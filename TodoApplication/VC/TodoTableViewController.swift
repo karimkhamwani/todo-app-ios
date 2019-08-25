@@ -59,6 +59,10 @@ class TodoTableViewController: UITableViewController,  NSFetchedResultsControlle
             if let indexPath = newIndexPath {
                 tableView.insertRows(at: [indexPath], with: .automatic)
             }
+        case .delete:
+            if let indexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
         default:
             break
         }
@@ -79,7 +83,17 @@ class TodoTableViewController: UITableViewController,  NSFetchedResultsControlle
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             //TODO : delete todo
-            completion(true)
+            let todo = self.resultsController.object(at: indexPath)
+            print(todo)
+            self.resultsController.managedObjectContext.delete(todo)
+            do {
+                try self.resultsController.managedObjectContext.save()
+                completion(true)
+            }
+            catch {
+                print("Delete Fail", error)
+                completion(false)
+            }
         }
 //        action.image = UIImage(named: "trash")
         action.backgroundColor = UIColor.red
