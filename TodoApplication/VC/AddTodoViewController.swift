@@ -53,9 +53,13 @@ class AddTodoViewController: UIViewController, UITextViewDelegate {
     }
     
 
-    @IBAction func onPressCancel(_ sender: Any) {
+    fileprivate func dismissAndResgin() {
         dismiss(animated: true)
         sayTextView.resignFirstResponder()
+    }
+    
+    @IBAction func onPressCancel(_ sender: Any) {
+        dismissAndResgin()
     }
     @IBAction func onPressDone(_ sender: Any) {
         guard let title = sayTextView.text, !title.isEmpty else {
@@ -68,21 +72,10 @@ class AddTodoViewController: UIViewController, UITextViewDelegate {
         
         do {
             try managedContext.save()
-            sayTextView.resignFirstResponder()
-            dismiss(animated: true)
+            dismissAndResgin()
         }
         catch{
             print("Error while saving" , error);
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

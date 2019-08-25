@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TodoTableViewController: UITableViewController {
+class TodoTableViewController: UITableViewController,  NSFetchedResultsControllerDelegate {
 
     // MARK : properties
     
@@ -31,6 +31,7 @@ class TodoTableViewController: UITableViewController {
             sectionNameKeyPath: nil,
             cacheName: nil
         )
+        resultsController.delegate = self
         
         //Fetch
         do {
@@ -41,13 +42,27 @@ class TodoTableViewController: UITableViewController {
         }
         
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 10;
-//    }
+    
+    // Implement these methods to show updated data in table rows
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        default:
+            break
+        }
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultsController.sections?[section].numberOfObjects ?? 0
@@ -55,14 +70,12 @@ class TodoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        
         let todo = resultsController.object(at: indexPath)
         cell.textLabel?.text = todo.title
-        
-        // Configure the cell...
         return cell
     }
     
+    // Action for deleting Todo
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
             //TODO : delete todo
@@ -73,6 +86,7 @@ class TodoTableViewController: UITableViewController {
         return UISwipeActionsConfiguration(actions: [action]);
     }
     
+    // Action for marking todo as done
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "Check") { (action, view, completion) in
             //TODO : delete todo
@@ -93,7 +107,7 @@ class TodoTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if let _ = sender as? UIBarButtonItem, let vc = segue.destination as? AddTodoViewController{
-            vc.managedContext = coreDataStack.managedContext
+            vc.managedContext = resultsController.managedObjectContext
         }
     }
  
