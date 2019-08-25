@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTodoViewController: UIViewController {
+class AddTodoViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var sayTextView: UITextView!
     @IBOutlet weak var doneButton: UIButton!
@@ -24,6 +24,19 @@ class AddTodoViewController: UIViewController {
             selector: #selector(KeyBoardWillShow(with:)),
             name: UIResponder.keyboardWillShowNotification,
             object: nil)
+        sayTextView.becomeFirstResponder();
+        sayTextView.delegate = self
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if doneButton.isHidden{
+            sayTextView.text.removeAll()
+            sayTextView.textColor = UIColor.white
+            doneButton.isHidden = false
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     @objc func KeyBoardWillShow(with notification : Notification){
@@ -39,11 +52,11 @@ class AddTodoViewController: UIViewController {
     
 
     @IBAction func onPressCancel(_ sender: Any) {
-        dismiss(animated: true) {
-            return;
-        }
+        dismiss(animated: true)
+        sayTextView.resignFirstResponder()
     }
     @IBAction func onPressDone(_ sender: Any) {
+        dismiss(animated: true)
     }
     /*
     // MARK: - Navigation
