@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddTodoViewController: UIViewController, UITextViewDelegate {
 
@@ -14,6 +15,7 @@ class AddTodoViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    var managedContext : NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,22 @@ class AddTodoViewController: UIViewController, UITextViewDelegate {
         sayTextView.resignFirstResponder()
     }
     @IBAction func onPressDone(_ sender: Any) {
-        dismiss(animated: true)
+        guard let title = sayTextView.text, !title.isEmpty else {
+            return;
+        }
+        let todo = Todo(context: managedContext)
+        todo.title = title;
+        todo.priority = Int16(segmentedControl.selectedSegmentIndex)
+        todo.date = Date()
+        
+        do {
+            try managedContext.save()
+            sayTextView.resignFirstResponder()
+            dismiss(animated: true)
+        }
+        catch{
+            print("Error while saving" , error);
+        }
     }
     /*
     // MARK: - Navigation

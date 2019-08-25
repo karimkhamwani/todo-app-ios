@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8A3272A52312F65A009165C4 /* Todos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A3272A32312F65A009165C4 /* Todos.xcdatamodeld */; };
+		8A3272A72312F899009165C4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3272A62312F899009165C4 /* CoreDataStack.swift */; };
 		8A34C28223125D15003C0A2C /* AddTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A34C28123125D15003C0A2C /* AddTodoViewController.swift */; };
 		8A34C28423125D5A003C0A2C /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A34C28323125D5A003C0A2C /* TodoTableViewController.swift */; };
 		8AB89ABD2311B8550071CBAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB89ABC2311B8550071CBAC /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8A3272A42312F65A009165C4 /* Todos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todos.xcdatamodel; sourceTree = "<group>"; };
+		8A3272A62312F899009165C4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8A34C28123125D15003C0A2C /* AddTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoViewController.swift; sourceTree = "<group>"; };
 		8A34C28323125D5A003C0A2C /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		8AB89AB92311B8550071CBAC /* TodoApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3272A32312F65A009165C4 /* Todos.xcdatamodeld */,
+				8A3272A62312F899009165C4 /* CoreDataStack.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				8AB89ABF2311B8550071CBAC /* ViewController.swift in Sources */,
 				8A3272A52312F65A009165C4 /* Todos.xcdatamodeld in Sources */,
 				8A34C28423125D5A003C0A2C /* TodoTableViewController.swift in Sources */,
+				8A3272A72312F899009165C4 /* CoreDataStack.swift in Sources */,
 				8A34C28223125D15003C0A2C /* AddTodoViewController.swift in Sources */,
 				8AB89ABD2311B8550071CBAC /* AppDelegate.swift in Sources */,
 			);
