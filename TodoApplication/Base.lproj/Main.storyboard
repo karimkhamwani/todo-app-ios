@@ -139,14 +139,12 @@
                         <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wBV-N1-3gi" firstAttribute="bottom" secondItem="Eb1-AU-gbh" secondAttribute="bottom" constant="401.5" id="75P-8g-u5M"/>
                             <constraint firstItem="hti-oh-W74" firstAttribute="bottom" secondItem="zAV-HC-o4i" secondAttribute="bottomMargin" id="AXY-Si-oTO"/>
                             <constraint firstItem="Eb1-AU-gbh" firstAttribute="leading" secondItem="wBV-N1-3gi" secondAttribute="leading" constant="20" id="KLh-SY-7y9"/>
                             <constraint firstItem="wBV-N1-3gi" firstAttribute="trailing" secondItem="hti-oh-W74" secondAttribute="trailing" constant="20" id="M25-63-YhE"/>
                             <constraint firstItem="wBV-N1-3gi" firstAttribute="bottom" secondItem="hti-oh-W74" secondAttribute="bottom" id="YjL-jW-sdR"/>
                             <constraint firstItem="hti-oh-W74" firstAttribute="leading" secondItem="wBV-N1-3gi" secondAttribute="leading" constant="20" id="a5z-aD-kN8"/>
                             <constraint firstItem="wBV-N1-3gi" firstAttribute="trailing" secondItem="Eb1-AU-gbh" secondAttribute="trailing" constant="20" id="eko-2W-ApL"/>
-                            <constraint firstItem="hti-oh-W74" firstAttribute="bottom" secondItem="wBV-N1-3gi" secondAttribute="bottom" id="hsa-Nl-Xlv"/>
                             <constraint firstItem="wBV-N1-3gi" firstAttribute="trailing" secondItem="Eb1-AU-gbh" secondAttribute="trailing" constant="20" id="lXf-jX-PcS"/>
                             <constraint firstItem="Eb1-AU-gbh" firstAttribute="height" secondItem="zAV-HC-o4i" secondAttribute="height" multiplier="0.4" id="pKo-Gt-lQB"/>
                             <constraint firstItem="Eb1-AU-gbh" firstAttribute="top" secondItem="wBV-N1-3gi" secondAttribute="top" constant="58" id="uNE-8v-slV"/>
@@ -154,7 +152,7 @@
                         <viewLayoutGuide key="safeArea" id="wBV-N1-3gi"/>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="AXY-Si-oTO" id="6Iy-1C-HZt"/>
+                        <outlet property="bottomConstraint" destination="YjL-jW-sdR" id="cb5-K7-OhP"/>
                         <outlet property="doneButton" destination="sRX-fF-UMe" id="c90-Yv-Y2v"/>
                         <outlet property="sayTextView" destination="8eP-jr-hdF" id="8oo-B2-snr"/>
                         <outlet property="segmentedControl" destination="DBL-3S-btd" id="0cF-kI-yAM"/>
